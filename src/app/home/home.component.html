@@ -1,0 +1,27 @@
+<div class="form">
+    <div>
+        <button class="modal-action btn waves-effect" type="submit" id="experiment_button"
+            (click)="startExperiment()">Start Experiment</button>
+    </div>
+
+    <div>
+        <button class="modal-action btn waves-effect" id="remove_button" (click)="deleteDeviceToken()">Remove Device
+            Token</button>
+    </div>
+
+    <div>
+        <button class="modal-action btn waves-effect" id="test_button" style="background-color: {{buttonColor}};">
+            Test Button
+        </button>
+    </div>
+
+    <div>
+        <button class="modal-action btn waves-effect" id="open_test_button">
+            <a href="/data" target="_blank">
+                Open Test Result
+            </a>
+        </button>
+    </div>
+
+    <h3>{{buttonColor}}</h3>
+</div>

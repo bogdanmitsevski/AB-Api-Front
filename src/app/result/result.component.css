@@ -1,0 +1,7 @@
+table {border: 1px solid black; padding: 5px;}
+table th {padding: 10px; border: 1px solid #ddd;}
+table td {padding: 10px; border: 1px solid rgb(219, 7, 7);}
+
+h5 {
+    text-align: center;
+}
