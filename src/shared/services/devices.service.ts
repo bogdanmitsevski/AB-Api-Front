@@ -11,31 +11,33 @@ export class DevicesService {
     public uuid = '';
 
 
-    constructor (private http: HttpClient) {
+    constructor(private http: HttpClient) {
 
     }
 
-    addDevice (uuid: string): Observable<DeviceResponse> {
-        return this.http.post<DeviceResponse>('api/send', null, {headers: new HttpHeaders({
-            'Device-Token': uuid
-        })})
-        .pipe(
-            tap(
-                ({newDevice:{uuid}}) => {
-                    localStorage.setItem('device-token', uuid)
-                }
+    addDevice(uuid: string): Observable<DeviceResponse> {
+        return this.http.post<DeviceResponse>('api/send', null, {
+            headers: new HttpHeaders({
+                'Device-Token': uuid
+            })
+        })
+            .pipe(
+                tap(
+                    ({ newDevice: { uuid } }) => {
+                        localStorage.setItem('device-token', uuid)
+                    }
+                )
             )
-        )
-            }
-        
+    }
 
 
-    removeToken () {
+
+    removeToken() {
         localStorage.removeItem('device-token');
     }
 
-    checkIfTokenExists () {
-        if(localStorage.getItem('device-token')) {
+    checkIfTokenExists() {
+        if (localStorage.getItem('device-token')) {
             return true
         }
         else {
@@ -43,11 +45,11 @@ export class DevicesService {
         }
     }
 
-    getToken () {
+    getToken() {
         return localStorage.getItem('device-token');
     }
 
-    async getResponse () {
+    async getResponse() {
         let response = await fetch('/api/send');
         return await response.json();
     }

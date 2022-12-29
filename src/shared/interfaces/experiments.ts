@@ -1,17 +1,12 @@
 export interface ExperimentsResponse {
+    allExperimentsArray: any
     totalNewDevices: number
-    AllExperiments: AllExperiments
-    DevicesGroups: DevicesGroups
-}
-
-export interface AllExperiments {
-    id: number
-    key: string
-    value: string
-}
-
-export interface DevicesGroups {
     totalDevicesByGroupA: number
     totalDevicesByGroupB: number
     totalDevicesByGroupC: number
+    allExperiments: [{
+        id: number,
+        key: string,
+        value: string,
+    }]
 }

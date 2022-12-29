@@ -14,7 +14,7 @@ export class ExperimentsService {
 
     }
 
-    getExperiments():Observable<ExperimentsResponse> {
+    getExperiments(): Observable<ExperimentsResponse> {
         return this.http.get<ExperimentsResponse>('/api/data');
     }
 

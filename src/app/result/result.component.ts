@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AllExperiments, DevicesGroups } from 'src/shared/interfaces/experiments';
 import { ExperimentsService } from 'src/shared/services/experiments.service';
 
 @Component({
@@ -13,19 +12,23 @@ export class ResultComponent {
   devicesByGroupA!: number;
   devicesByGroupB!: number;
   devicesByGroupC!: number;
-  experiments!: AllExperiments;
-  groups!: number;
+  experiments!: any;
+  groupsA!: number;
+  groupsB!: number;
+  groupsC!: number;
 
   constructor(private service: ExperimentsService) {
 
   }
 
   ngOnInit() {
-    this.service.getExperiments().subscribe(res =>{
+    this.service.getExperiments().subscribe(res => {
       this.newDevices = res.totalNewDevices;
-      //this.experiments = res.AllExperiments;
-      this.groups = res.DevicesGroups.totalDevicesByGroupA
-      
+      this.experiments = res.allExperiments;
+      this.groupsA = res.totalDevicesByGroupA
+      this.groupsB = res.totalDevicesByGroupB
+      this.groupsC = res.totalDevicesByGroupC
+
     })
     console.log(this.experiments);
   }
