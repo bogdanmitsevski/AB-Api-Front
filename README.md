@@ -1,27 +1,15 @@
 # Client
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.4.
+Для запуску потрібно виконати:
 
-## Development server
+1)npm i - установка пакетів
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+2)npm run start - запуск фронтенду
 
-## Code scaffolding
+Кнопка "Start" запускає експеримент(створює нову сесію)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Кнопка "Remove Token" видаляє токен
 
-## Build
+Кнопка "Open Test" відкриє таблицю з результатами
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Якщо токен був створений в результаті попереднього експерименту, то буде показано сповіщення, що цей девайс вже був створений, створиться запис в базі даних, але оскільки цей девайс раніше створювався, то він отримає те саме значення експерименту, що й раніше і завжди буде його отримувати
