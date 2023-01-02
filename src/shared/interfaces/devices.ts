@@ -1,4 +1,4 @@
-export interface NewDevice {
+export interface Device {
     id: string
     uuid: string
     experimentId: string
@@ -7,10 +7,12 @@ export interface NewDevice {
     createdAt: string
 }
 
-
-
-export interface DeviceResponse {
-    newDevice: NewDevice
+export interface NewDeviceResponse {
+    device: Device
     experimentValue: string
 }
 
+export interface OldDeviceResponse {
+    token: string
+    experimentValue: string
+}

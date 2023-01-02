@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http"
-import { DeviceResponse } from "../interfaces/devices";
+import { NewDeviceResponse, OldDeviceResponse } from "../interfaces/devices";
 import { Observable, tap } from "rxjs";
 
 @Injectable({
@@ -9,22 +9,38 @@ import { Observable, tap } from "rxjs";
 
 export class DevicesService {
     public uuid = '';
+    public token = '';
 
 
     constructor(private http: HttpClient) {
 
     }
 
-    addDevice(uuid: string): Observable<DeviceResponse> {
-        return this.http.post<DeviceResponse>('api/send', null, {
+    addNewDevice(uuid: string): Observable<NewDeviceResponse> {
+        return this.http.post<NewDeviceResponse>('api/', null, {
             headers: new HttpHeaders({
                 'Device-Token': uuid
             })
         })
             .pipe(
                 tap(
-                    ({ newDevice: { uuid } }) => {
-                        localStorage.setItem('device-token', uuid)
+                    ({ device: { uuid } }) => {
+                        sessionStorage.setItem('device-token', uuid)
+                    }
+                )
+            )
+    }
+
+    addOldDevice(token: string): Observable<OldDeviceResponse> {
+        return this.http.post<OldDeviceResponse>('api/', null, {
+            headers: new HttpHeaders({
+                'Device-Token': token
+            })
+        })
+            .pipe(
+                tap(
+                    ({ token }) => {
+                        sessionStorage.setItem('device-token', token )
                     }
                 )
             )
@@ -37,16 +53,11 @@ export class DevicesService {
     }
 
     checkIfTokenExists() {
-        if (localStorage.getItem('device-token')) {
-            return true
-        }
-        else {
-            return false
-        }
+        return !!this.getToken();
     }
 
     getToken() {
-        return localStorage.getItem('device-token');
+        return sessionStorage.getItem('device-token');
     }
 
     async getResponse() {

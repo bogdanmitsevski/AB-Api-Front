@@ -14,13 +14,14 @@ export class HomeComponent {
   aSub!: Subscription
   localStorage!: Storage
   buttonColor!: string
+  sessionToken!: any
 
   constructor(private service: DevicesService, private router: Router) {
 
   }
 
   startExperimentNewToken() {
-    this.aSub = this.service.addDevice(uuid.v4()).subscribe(
+    this.aSub = this.service.addNewDevice(uuid.v4()).subscribe(
       (res) => {
         this.router.navigate(['/']);
         this.buttonColor = res.experimentValue
@@ -32,11 +33,10 @@ export class HomeComponent {
   }
 
   startExperimentOldToken() {
-    this.aSub = this.service.addDevice(this.service.getToken() || "").subscribe(
+    this.aSub = this.service.addOldDevice(this.sessionToken || '').subscribe(
       (res) => {
         this.router.navigate(['/']);
-        this.buttonColor = res.experimentValue
-        console.log(this.buttonColor);
+        this.buttonColor = res.experimentValue;
       },
       error => {
         console.warn(error)
@@ -44,22 +44,15 @@ export class HomeComponent {
     )
   }
 
-  startExperiment() {
-    console.log(this.localStorage)
+  ngOnInit() {
     if (this.service.checkIfTokenExists() == false) {
       this.startExperimentNewToken();
     }
 
     else {
+      this.sessionToken = this.service.getToken();
       this.startExperimentOldToken();
-      alert('This is old Device. Experiment is impossible. Press "Remove Token" button');
     }
-  }
-
-
-  deleteDeviceToken() {
-    this.service.removeToken()
-    this.buttonColor = ''
   }
 
 }

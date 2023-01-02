@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http"
-import { DeviceResponse } from "../interfaces/devices";
+import { HttpClient } from "@angular/common/http"
 import { Observable, tap } from "rxjs";
 import { ExperimentsResponse } from "../interfaces/experiments";
 

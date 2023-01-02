@@ -30,7 +30,6 @@ export class ResultComponent {
       this.groupsC = res.totalDevicesByGroupC
 
     })
-    console.log(this.experiments);
   }
 
 
