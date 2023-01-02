@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http"
-import { NewDeviceResponse, OldDeviceResponse } from "../interfaces/devices";
+import { CurrentDeviceResponse, NewDeviceResponse } from "../interfaces/devices";
 import { Observable, tap } from "rxjs";
 
 @Injectable({
@@ -31,8 +31,8 @@ export class DevicesService {
             )
     }
 
-    addOldDevice(token: string): Observable<OldDeviceResponse> {
-        return this.http.post<OldDeviceResponse>('api/', null, {
+    addOldDevice(token: string): Observable<CurrentDeviceResponse> {
+        return this.http.post<CurrentDeviceResponse>('api/', null, {
             headers: new HttpHeaders({
                 'Device-Token': token
             })
@@ -40,7 +40,7 @@ export class DevicesService {
             .pipe(
                 tap(
                     ({ token }) => {
-                        sessionStorage.setItem('device-token', token )
+                        sessionStorage.setItem('device-token', token)
                     }
                 )
             )

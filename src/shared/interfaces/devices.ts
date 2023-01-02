@@ -12,7 +12,7 @@ export interface NewDeviceResponse {
     experimentValue: string
 }
 
-export interface OldDeviceResponse {
+export interface CurrentDeviceResponse {
     token: string
     experimentValue: string
 }
