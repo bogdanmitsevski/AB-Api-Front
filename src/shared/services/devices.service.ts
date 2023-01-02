@@ -47,21 +47,11 @@ export class DevicesService {
     }
 
 
-
-    removeToken() {
-        localStorage.removeItem('device-token');
-    }
-
     checkIfTokenExists() {
         return !!this.getToken();
     }
 
     getToken() {
         return sessionStorage.getItem('device-token');
-    }
-
-    async getResponse() {
-        let response = await fetch('/api/send');
-        return await response.json();
     }
 }
