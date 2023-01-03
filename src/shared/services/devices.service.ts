@@ -37,13 +37,6 @@ export class DevicesService {
                 'Device-Token': token
             })
         })
-            .pipe(
-                tap(
-                    ({ token }) => {
-                        sessionStorage.setItem('device-token', token)
-                    }
-                )
-            )
     }
 
 
